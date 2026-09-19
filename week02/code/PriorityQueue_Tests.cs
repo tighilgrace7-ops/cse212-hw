@@ -45,7 +45,7 @@ public class PriorityQueueTests
     // Add more test cases as needed below.
 
     [TestMethod]
-    // Scenario: Try to remove an item from an empty prioprity queue.
+    // Scenario: Try to remove an item from an empty priority queue.
     // Expected Result: An InvalidOperationException should be thrown with the message "The queue is empty."
     // Defect(s) Found: None. Test passed.
     public void TestPriorityQueue_Empty()
@@ -63,4 +63,20 @@ public class PriorityQueueTests
             Assert.AreEqual("The queue is empty.", e.Message);
         }
     }
+
+    [TestMethod]
+    // Scenario: Add three items with different priorities and check their order in queue.
+    // Expected Result: Each new item should be added to the back of the queue regardless of priority.
+    // Defect(s) Found: None. Test passed.
+    public void TestPriorityQueue_EnqueueAddsToBack()
+    {
+        var priorityQueue = new PriorityQueue();
+
+        priorityQueue.Enqueue("First", 1);
+        priorityQueue.Enqueue("Second", 5);
+        priorityQueue.Enqueue("Third", 3);
+
+        Assert.AreEqual("[First (Pri:1), Second (Pri:5), Third (Pri:3)]", priorityQueue.ToString());
+    }
+
 }
